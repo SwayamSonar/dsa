@@ -1,0 +1,99 @@
+#include<iostream> 
+#include<algorithm> 
+#include<vector> 
+using namespace std; 
+class student 
+{ 
+ public: 
+ char name[10]; 
+ char dob[10]; 
+ long int tel; 
+ int roll; 
+ bool operator==(const student& i1) 
+ { 
+ if(roll == i1.roll) 
+ return(1); 
+ return(0); 
+ } 
+}; 
+vector<student>o1; 
+void print(student&i1); 
+void display(); 
+void insert(); 
+void search(); 
+bool compare(const student&i1,const student&i2) 
+{ 
+ if(i1.name!=i2.name) 
+ return(i1.roll<i2.roll); 
+} 
+int main() 
+{ 
+ int ch; 
+ do 
+ { 
+ cout<<"\n*****Menu*****"; 
+ cout<<"\n1. Insert"; 
+ cout<<"\n2. Display"; 
+ cout<<"\n3. Search"; 
+ cout<<"\n4. Sort"; 
+ cout<<"\n5. Exit"; 
+ cout<<"\nEnter your choice: "; 
+ cin>>ch; 
+ switch(ch) 
+ { 
+ case 1: 
+ insert(); 
+ break; 
+ case 2: 
+display(); 
+ break; 
+ case 3: 
+ search(); 
+ break; 
+ case 4: 
+ sort(o1.begin(),o1.end(),compare); 
+ cout<<"\n\nSorted on roll numbers"; 
+ display(); 
+ break; 
+ } 
+ }while(ch!=5); 
+ cout<<"The program has been ended."; 
+ return(0); 
+} 
+void insert() 
+{ 
+ student i1; 
+ cout<<"\nEnter Student Name: "; 
+ cin>>i1.name; 
+ cout<<"\nEnter Student DOB: "; 
+ cin>>i1.dob; 
+ cout<<"\nEnter Student Telephone: "; 
+ cin>>i1.tel; 
+ cout<<"\nEnter Student Roll Number: "; 
+ cin>>i1.roll; 
+ o1.push_back(i1); 
+} 
+void display() 
+{ 
+ for_each(o1.begin(),o1.end(),print); 
+} 
+void print(student &i1) 
+{ 
+ cout<<"\n"; 
+ cout<<"\nStudent Name: "<<i1.name; 
+ cout<<"\nStudent DOB: "<<i1.dob; 
+ cout<<"\nStudent Telephone Number: "<<i1.tel; 
+ cout<<"\nStudent Roll number: "<<i1.roll; 
+} 
+void search() 
+{ 
+ vector<student>:: iterator p; 
+ student i1; 
+ cout<<"\nEnter Student Roll Number to search: "; 
+ cin>>i1.roll; 
+ p=find(o1.begin(),o1.end(),i1); 
+ if(p==o1.end()) 
+ cout<<"\nNot Found"; 
+ else 
+cout<<"\nFound"; 
+} 

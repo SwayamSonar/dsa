@@ -1,0 +1,39 @@
+#include <iostream> 
+using namespace std; 
+template<typename T> 
+T selection_sort(){ 
+ T a[10]; 
+ T temp; 
+ cout<<"\nenter elements for sorting: "<<endl; 
+ //accepting elements 
+ for(int i=0;i<10;i++){ 
+ cout<<"a["<<i<<"]="; 
+ cin>>a[i]; 
+ } 
+ //sorting elements 
+ for(int i=0;i<10;i++){ 
+ for(int j=i+1;j<10;j++){ 
+ 
+ if(a[i]>a[j]){ 
+ temp=a[i]; 
+ a[i]=a[j]; 
+ a[j]=temp; 
+ } 
+ } 
+ } 
+ 
+ //displaying elements 
+ for(int i=0;i<10;i++){ 
+ cout<<"\na["<<i<<"]="<<a[i]; 
+ } 
+} 
+int main(){ 
+ 
+ cout<<"\nsorting of integer array: "; 
+ selection_sort<int>(); 
+ 
+ cout<<"\nsorting of float array: "; 
+ selection_sort<float>(); 
+ 
+ return 0; 
+} 
